@@ -1,4 +1,4 @@
-import 'package:ebookapp/features/home/presentation/views/widgets/custom_list_view_item.dart';
+import 'package:ebookapp/features/home/presentation/views/widgets/custom_Book_item.dart';
 import 'package:flutter/material.dart';
 
 class FeaturedBooksListView extends StatelessWidget {
