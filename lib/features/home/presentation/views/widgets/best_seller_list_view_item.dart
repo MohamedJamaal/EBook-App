@@ -2,12 +2,16 @@ import 'package:ebookapp/constants.dart';
 import 'package:ebookapp/core/utils/app_router.dart';
 import 'package:ebookapp/core/utils/assets.dart';
 import 'package:ebookapp/core/utils/styles.dart';
+import 'package:ebookapp/features/home/data/models/book_model/book_model.dart';
 import 'package:ebookapp/features/home/presentation/views/widgets/book_rating.dart';
+import 'package:ebookapp/features/home/presentation/views/widgets/custom_Book_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class BookListViewItem extends StatelessWidget {
-  const BookListViewItem({super.key});
+  const BookListViewItem({super.key, required this.bookModel});
+
+  final BookModel bookModel;
 
   @override
   Widget build(BuildContext context) {
@@ -19,18 +23,8 @@ class BookListViewItem extends StatelessWidget {
         height: 125,
         child: Row(
           children: [
-            AspectRatio(
-              aspectRatio: 2.5 / 4,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  image: const DecorationImage(
-                    image: AssetImage(AssetsData.testImage),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ),
+            CustomBookImage(
+                imageUrl: bookModel.volumeInfo.imageLinks!.thumbnail),
             const SizedBox(
               width: 30,
             ),
@@ -41,15 +35,17 @@ class BookListViewItem extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: Text(
-                      'Harry Potter and the Goblet of Fire',
+                      bookModel.volumeInfo.title!,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: Styles.textStyle20
                           .copyWith(fontFamily: KGtSectraFine),
                     ),
                   ),
-                  const Text(
-                    'J.K. Rowling',
+                  Text(
+                    bookModel.volumeInfo.authors?.isNotEmpty == true
+                        ? bookModel.volumeInfo.authors![0].toUpperCase()
+                        : 'Unknown Author',
                     style: Styles.textStyle14,
                   ),
                   const SizedBox(
@@ -58,12 +54,15 @@ class BookListViewItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '99.9 €',
+                        'Free',
                         style: Styles.textStyle20
                             .copyWith(fontWeight: FontWeight.bold),
                       ),
                       const Spacer(),
-                      const BookRating(),
+                      BookRating(
+                        rating: bookModel.volumeInfo.language ?? '5',
+                        count: bookModel.volumeInfo.pageCount ?? 124,
+                      ),
                     ],
                   )
                 ],
