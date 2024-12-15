@@ -1,9 +1,12 @@
 import 'package:ebookapp/core/utils/styles.dart';
+import 'package:ebookapp/features/home/data/models/book_model/book_model.dart';
 import 'package:ebookapp/features/home/presentation/views/widgets/similar_books_list_view.dart';
 import 'package:flutter/material.dart';
 
 class SimilarBooksSection extends StatelessWidget {
-  const SimilarBooksSection({super.key});
+  const SimilarBooksSection({super.key, required this.bookModel});
+
+  final BookModel bookModel;
 
   @override
   Widget build(BuildContext context) {

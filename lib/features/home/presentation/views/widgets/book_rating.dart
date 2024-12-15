@@ -14,7 +14,7 @@ class BookRating extends StatelessWidget {
   final MainAxisAlignment mainAxisAlignment;
 
   final String rating;
-  final int count;
+  final num count;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -29,7 +29,7 @@ class BookRating extends StatelessWidget {
           width: 6.3,
         ),
         Text(
-          rating,
+          rating.toString(),
           style: Styles.textStyle16,
         ),
         const SizedBox(
@@ -38,7 +38,7 @@ class BookRating extends StatelessWidget {
         Opacity(
           opacity: 0.5,
           child: Text(
-            rating,
+            count.toString(),
             overflow: TextOverflow.ellipsis,
             style: Styles.textStyle14.copyWith(
               fontWeight: FontWeight.w600,

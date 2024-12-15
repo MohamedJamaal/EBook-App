@@ -16,13 +16,15 @@ class SilmilarBooksListView extends StatelessWidget {
           return SizedBox(
             height: MediaQuery.of(context).size.height * 0.15,
             child: ListView.builder(
+              itemCount: state.books.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5),
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
                   child: CustomBookImage(
                     imageUrl:
-                        'https://images.adsttc.com/media/images/63d3/df58/7643/4a4d/2f1e/e451/medium_jpg/milan-architecture-city-guide-15-must-see-landmarks-and-15-contemporary-attractions-in-italys-fashion-capital_56.jpg?1674829706',
+                        state.books[index].volumeInfo.imageLinks?.thumbnail ??
+                            '',
                   ),
                 );
               },
