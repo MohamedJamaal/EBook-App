@@ -23,7 +23,7 @@ class BookListViewItem extends StatelessWidget {
         );
       },
       child: SizedBox(
-        height: 125,
+        height: 130,
         child: Row(
           children: [
             CustomBookImage(

@@ -39,7 +39,7 @@ class BookRating extends StatelessWidget {
           opacity: 0.5,
           child: Text(
             count.toString(),
-            overflow: TextOverflow.ellipsis,
+            // overflow: TextOverflow.ellipsis,
             style: Styles.textStyle14.copyWith(
               fontWeight: FontWeight.w600,
             ),
